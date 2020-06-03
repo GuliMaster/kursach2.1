@@ -1,4 +1,4 @@
-const server = "http://localhost:8080"
+const server = "http://95.217.210.154"
 $(document).ready(function(){
     let table = document.getElementById('table');
     let html1 = "";

@@ -10,7 +10,7 @@ if (isset($_COOKIE['cookie_token'])){
    $result=mysqli_query($link, $query);
    mysqli_close($link);
    setcookie('cookie_token', '');
-   header("Location: http://kursach1/login.php");
+   header("Location: http://95.217.210.154/login.php");
    die();
 }
 $login=$_POST['login'];
@@ -24,7 +24,7 @@ for ($i=0; $i<mysqli_num_rows($result); ++$i){
     }
 }
 mysqli_close($link);
-header("Location: http://kursach1/login.php?err=logindoesntexist");
+header("Location: http://95.217.210.154/login.php?err=logindoesntexist");
 die();
 exist:
 $query="SELECT password FROM users WHERE login = '$login'";
@@ -37,10 +37,11 @@ if (password_verify ($password,$hash_password)){
     $result = mysqli_query($link, $query);
     mysqli_close($link);
     setcookie('cookie_token', $token);
-    header("Location: http://kursach1/index.php");
+    header("Location: http://95.217.210.154/index.php");
 }
 else {
     mysqli_close($link);
-    header("Location: http://kursach1/login.php?err=wrongpass");
+    header("Location: http://95.217.210.154/login.php?err=wrongpass");
 }
 ?>
+
