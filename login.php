@@ -1,7 +1,7 @@
    <?php
-   if (isset($_COOKIE['cookie_token'])) {
-        header("Location: http://kursach1/index.html");
-        die();
+    if (isset($_COOKIE['cookie_token'])) {
+         header("Location: http://95.217.210.154/index.html");
+         die();
     }
     ?>
    <!doctype html>
@@ -167,7 +167,7 @@
                   <i class="fa fa-lock"></i>
                   </div>
                   <div class="form-group">
-                  <a href="http://kursach1/signup.php" class="form-group text"> Sign up </a>
+                  <a href="http://95.217.210.154/signup.php"  class="form-group text"> Sign up </a>
                   <button type="submit" class="btn btn-default">ВХОД</button>
                   </div>
                   </form>

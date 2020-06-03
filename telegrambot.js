@@ -3,7 +3,7 @@ var token = '632065176:AAGWUZorgaqTSSLBtwqGdwvwJPkqw4ivOlg';
 var bot = new TelegramBot(token, { polling: true });
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
-const server = "http://localhost:8080";
+const server = "http://95.217.210.154";
 var query_to_server = function(bot, server, msg, xhr, actionType){
     xhr.open('GET',encodeURI(`${server}?actionType=${actionType}&item=${msg.text}`), false);
     xhr.send();

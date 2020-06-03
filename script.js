@@ -1,4 +1,4 @@
-const server = "http://localhost:8080"
+const server = "http://95.217.210.154"
 $(document).ready(function(){
     let table = document.getElementById('table');
     let html1 = "";
@@ -16,6 +16,18 @@ $(document).ready(function(){
         }
     });
 });
+
+let removeAll = function() {
+    let table = document.getElementById('table');
+    $.ajax({
+        url: server,
+        method: "GET",
+        data: {"actionType": "da"},
+        success: function (data) {
+            table.innerHTML = '';
+        }
+    });
+}
 
 let removeTask = function(obj) {
     let ItemId = obj.parentNode.parentNode.id;

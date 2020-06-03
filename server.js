@@ -6,9 +6,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.get('/', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     console.log(req.query);
     if(req.query.actionType=="r"){
-        res.send(JSON.parse(fs.readFileSync('queue.json')));
+        res.send(JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json')));
     }
     else if(req.query.actionType=="c"){
         let newDat = req.query.item;
@@ -17,7 +19,7 @@ app.get('/', function(req, res){
         let login = acc.slice(0, acc.indexOf(' '));
         let password = bin2hex(acc.slice(acc.indexOf(' ')+1,));
         let client = {'name':name , 'login': login, 'password':password};
-        let fileDat = JSON.parse(fs.readFileSync('clients.json'));
+        let fileDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/clients.json'));
         let existence = 0;
         for (let key in fileDat.dat){
             if (fileDat.dat[key].login == login){
@@ -28,11 +30,11 @@ app.get('/', function(req, res){
         if (existence == 0) {
             fileDat.idMax++;
             fileDat.dat[fileDat.idMax] = client;
-            fs.writeFileSync("clients.json", JSON.stringify(fileDat));
-            let queueDat = JSON.parse(fs.readFileSync('queue.json'));
+            fs.writeFileSync("/var/www/kursach2.1/clients.json", JSON.stringify(fileDat));
+            let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
             queueDat.idMax++;
             queueDat.dat[queueDat.idMax] = {"id":queueDat.idMax,"name":name};
-            fs.writeFileSync("queue.json", JSON.stringify(queueDat));
+            fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
             res.status(200).send(`Вы успешно зарегистрировались и встали в очередь! Ваше место в очереди - ${queueDat.idMax}.`);
         }
     }
@@ -40,8 +42,8 @@ app.get('/', function(req, res){
         let newDat = req.query.item;
         let login = newDat.slice(0, newDat.indexOf(' '));
         let password = bin2hex(newDat.slice(newDat.indexOf(' ')+1,));
-        let queueDat = JSON.parse(fs.readFileSync('queue.json'));
-        let fileDat = JSON.parse(fs.readFileSync('clients.json'));
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
+        let fileDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/clients.json'));
         let existence = 0;
         for (let key in fileDat.dat){
             if (fileDat.dat[key].login == login){
@@ -61,7 +63,7 @@ app.get('/', function(req, res){
                     if (fileDat.dat[key].password == password) {
                         queueDat.idMax++;
                         queueDat.dat[queueDat.idMax] = {"id":queueDat.idMax,"name": fileDat.dat[key].name};
-                        fs.writeFileSync("queue.json", JSON.stringify(queueDat));
+                        fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
                         res.status(200).send(`Ваше место в очереди - ${queueDat.idMax}.`);
                     } else {
                         res.status(200).send('Неверный пароль! Введите данные еще раз!');
@@ -76,8 +78,8 @@ app.get('/', function(req, res){
     else if(req.query.actionType=="k"){
         let newDat = req.query.item;
         console.log(newDat);
-        let queueDat = JSON.parse(fs.readFileSync('queue.json'));
-        let fileDat = JSON.parse(fs.readFileSync('clients.json'));
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
+        let fileDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/clients.json'));
         let existence = 0;
         for (let key in fileDat.dat){
             if (fileDat.dat[key].login == newDat){
@@ -97,14 +99,14 @@ app.get('/', function(req, res){
     else if(req.query.actionType=="u"){
         let newDat = req.query.item;
         let lastId = req.query.id;
-        let queueDat = JSON.parse(fs.readFileSync('queue.json'));
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
         queueDat.dat[lastId].name = newDat;
-        fs.writeFileSync("queue.json", JSON.stringify(queueDat));
+        fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
         res.status(200).send(newDat.toString());
     }
     else if(req.query.actionType=="d"){
         let lastId = req.query.id;
-        let queueDat = JSON.parse(fs.readFileSync('queue.json'));
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
         delete queueDat.dat[lastId];
         queueDat.idMax--;
         for (let key in queueDat.dat){
@@ -112,11 +114,21 @@ app.get('/', function(req, res){
                 queueDat.dat[key].id--;
             }
         }
-        fs.writeFileSync("queue.json", JSON.stringify(queueDat));
+        fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
         res.status(200).send(lastId.toString());
     }
+    else if(req.query.actionType == "da"){
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
+        for (let key in queueDat.dat) {
+            delete queueDat.dat[key];
+        }
+        queue.dat[key].id = 0;
+        console.log(queueDat);
+        fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
+    }
     else{
-        res.send('wrong request')
+        res.send('wrong request');
     }
 });
 app.listen(8080);
+

@@ -1,8 +1,8 @@
    <?php
-   if (isset($_COOKIE['cookie_token'])) {
-        header("Location: http://kursach1/index.html");
-        die();
-    }
+  if (isset($_COOKIE['cookie_token'])) {
+          header("Location: http://95.217.210.154/index.php");
+          die();
+      }
     ?>
    <!doctype html>
            <html lang="en">

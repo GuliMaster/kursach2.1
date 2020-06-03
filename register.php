@@ -15,11 +15,11 @@
         }
     }
     mysqli_close($link);
-    header("Location: http://kursach1/signup.php?err=unknowncode");
+    header("Location: http://95.217.210.154/signup.php?err=unknowncode");
     die();
     exist:
     if ($password!=$confirm) {
-        header("Location: http://kursach1/signup.php?err=difpass");
+        header("Location: http://95.217.210.154/signup.php?err=difpass");
         die();
     }
     $query="SELECT login FROM users";
@@ -27,7 +27,7 @@
     for ($i=0; $i<mysqli_num_rows($result); ++$i){
         $acc = mysqli_fetch_row($result);
         if($login==$acc[0]){
-            header("Location: http://kursach1/signup.php?err=loginexists");
+            header("Location: http://95.217.210.154/signup.php?err=loginexists");
             die();
         }
     }
@@ -41,12 +41,12 @@
         $query = "UPDATE users SET token = '$token' WHERE login = '$login'";
         $result = mysqli_query($link, $query);
         setcookie('cookie_token', $token);
-        header("Location: http://kursach1/index.php");
+        header("Location: http://95.217.210.154/index.php");
         mysqli_close($link);
         die();
     }
     else {
-        echo "Error: " . $query . "<br>" . mysqli_error($link);
+echo "Error: " . $query . "<br>" . mysqli_error($link);
         mysqli_close($link);
         die();
     }
