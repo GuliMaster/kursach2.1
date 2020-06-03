@@ -1,13 +1,14 @@
 <?php
    require_once 'database.php';
    if (!isset($_COOKIE['cookie_token'])) {
-        header("Location: http://kursach1/login.php");
+        header("Location: http://95.217.210.154/login.php");
         die();
    }
 ?>
 <!doctype html>
 <html>
 <head>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Электронная очередь</title>
     <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
@@ -40,7 +41,7 @@
     </style>
     <div class="container">
         <div class="row">
-          <a href="http://kursach1/auth.php" class="href"> Log out... </a>
+          <a href="http://95.217.210.154/auth.php" class="href"> Log out... </a>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 align="center">
