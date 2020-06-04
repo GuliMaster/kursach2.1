@@ -38,22 +38,30 @@
             text-shadow: black 1px 1px 0, black -1px -1px 0,
                          black -1px 1px 0, black 1px -1px 0;
         }
-    </style>
-    <div class="container">
-        <div class="row">
-          <a href="http://95.217.210.154/auth.php" class="href"> Log out... </a>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 align="center">
-                        КЛИЕНТЫ
-                    </h3>
-                </div>
-                <table class="table table-fixed" id = "table">
-                    <tbody align="center">
-                        <script src="script.js"></script>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-  </html>
+   .remove_all {
+                 position: absolute;
+                 width: 6vw;
+                 font-size: 1vw;
+                 margin-top: 1vh;
+                 margin-left: 65vw;
+         }
+     </style>
+     <div class="container">
+         <div class="row">
+           <a href="http://95.217.210.154/auth.php" class="href"> Log out... </a>
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                 <script src = "script.js"></script>
+                 <button class = "remove_all" onclick="removeAll()">Сбросить очередь</button>
+                     <h3 align="center">
+                         КЛИЕНТЫ
+                     </h3>
+                 </div>
+                 <table class="table table-fixed" id = "table">
+                     <tbody align="center">
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div>
+   </html>

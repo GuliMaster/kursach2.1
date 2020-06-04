@@ -117,6 +117,15 @@ app.get('/', function(req, res){
         fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
         res.status(200).send(lastId.toString());
     }
+    else if(req.query.actionType == "da"){
+        let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
+        for (let key in queueDat.dat) {
+            delete queueDat.dat[key];
+        }
+        queue.dat[key].id = 0;
+        console.log(queueDat);
+        fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
+    }
     else{
         res.send('wrong request');
     }

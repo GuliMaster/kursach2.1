@@ -17,6 +17,18 @@ $(document).ready(function(){
     });
 });
 
+let removeAll = function() {
+    let table = document.getElementById('table');
+    $.ajax({
+        url: server,
+        method: "GET",
+        data: {"actionType": "da"},
+        success: function (data) {
+            table.innerHTML = '';
+        }
+    });
+}
+
 let removeTask = function(obj) {
     let ItemId = obj.parentNode.parentNode.id;
     $.ajax({
