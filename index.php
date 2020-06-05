@@ -43,7 +43,7 @@
                  width: 6vw;
                  font-size: 1vw;
                  margin-top: 1vh;
-                 margin-left: 65vw;
+                 margin-left: 63vw;
          }
 	 .amount {
                 position: absolute;
@@ -52,6 +52,12 @@
                 margin-top: 1vh;
                 margin-left: 70vw;
          }
+	 .amount_text {
+	 	position: absolute;
+		font-size: 1vw;
+		margin-top: -6vh;
+		margin-left: 79vw;
+      	 }
      </style>
      <div class="container">
          <div class="row">

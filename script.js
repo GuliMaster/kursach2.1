@@ -40,9 +40,13 @@ let removeAll = function() {
     });
 }
 
-let amount = function() {
+let amount = function(obj) {
     let table =  document.getElementById('table');
-    document.write(table.childElementCount);
+    let p = document.createElement('p');
+    p.className = "amount_text";
+    p.innerHTML =  table.firstChild.childElementCount;
+    obj.parentNode.append(p);
+    console.log(p);
 }
 
 let editTask = function (obj) {
