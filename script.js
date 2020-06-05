@@ -1,4 +1,4 @@
-const server = "http://95.217.210.154"
+const server = "http://95.217.210.154:8080"
 $(document).ready(function(){
     let table = document.getElementById('table');
     let html1 = "";
@@ -7,27 +7,14 @@ $(document).ready(function(){
         method: "GET",
         data: {"actionType":"r"},
         success: function (data) {
-            for(let key in data.dat){
-                html1 += `<tr id="${key}"><td class="col-xs-2">${data.dat[key].id}</td> 
-                     <td class="col-xs-8" id="item ${key}">${data.dat[key].name}</td><td><button class="btn" onclick="editTask(this)"><i class="fa fa-pencil"></i></button></td><td><button class="btn del-btn" onclick="removeTask(this)"><i class="fa fa-trash"></i></button></td>
-                </tr>`;
+	    for(let key in data.dat){
+                html1 += `<tr id="${key}"><td class="col-xs-2">${data.dat[key].id}</td>
+                     <td class="col-xs-8" id="item ${key}">${data.dat[key].name}</td><td><button class="btn" onclick="editTask(this)"><i class="fa fa-pencil"></i></button></td><td><button class="btn del-btn" onclick="removeTask(this)"><i class="fa fa-trash"></i></button></td></tr>`;
             }
-            table.innerHTML = html1;
-        }
+	    table.innerHTML =  html1;
+	}
     });
 });
-
-let removeAll = function() {
-    let table = document.getElementById('table');
-    $.ajax({
-        url: server,
-        method: "GET",
-        data: {"actionType": "da"},
-        success: function (data) {
-            table.innerHTML = '';
-        }
-    });
-}
 
 let removeTask = function(obj) {
     let ItemId = obj.parentNode.parentNode.id;
@@ -37,6 +24,18 @@ let removeTask = function(obj) {
         data: {"actionType": "d", "id": ItemId},
         success: function (data) {
             document.getElementById(`${data}`).remove();
+        }
+    });
+}
+
+let removeAll = function() {
+    let table = document.getElementById('table');
+    $.ajax({
+        url: server,
+        method: "GET",
+        data: {"actionType":"da"},
+        success: function (data) {
+            table.innerHTML = '';
         }
     });
 }

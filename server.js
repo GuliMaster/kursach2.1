@@ -8,9 +8,8 @@ app.use(express.urlencoded({extended: false}));
 app.get('/', function(req, res){
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-    console.log(req.query);
     if(req.query.actionType=="r"){
-        res.send(JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json')));
+        res.status(200).send(JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json')));
     }
     else if(req.query.actionType=="c"){
         let newDat = req.query.item;
@@ -122,10 +121,10 @@ app.get('/', function(req, res){
         for (let key in queueDat.dat) {
             delete queueDat.dat[key];
         }
-        queue.dat[key].id = 0;
-        console.log(queueDat);
+        queueDat.idMax = 0;
         fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
-    }
+	res.status(200).send('request confirmed'); 
+   }
     else{
         res.send('wrong request');
     }
