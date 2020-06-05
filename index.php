@@ -45,6 +45,13 @@
                  margin-top: 1vh;
                  margin-left: 65vw;
          }
+	 .amount {
+                position: absolute;
+                width: 7vw;
+                font-size: 1vw;
+                margin-top: 1vh;
+                margin-left: 70vw;
+         }
      </style>
      <div class="container">
          <div class="row">
@@ -52,6 +59,7 @@
              <div class="panel panel-default">
                  <div class="panel-heading">
                  <button class = "remove_all" onclick="removeAll()">Сбросить очередь</button>
+	         <button class = "amount" onclick = "amount(this)">Количество людей</button>
                      <h3 align="center">
                          КЛИЕНТЫ
                      </h3>
