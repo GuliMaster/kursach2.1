@@ -41,6 +41,11 @@ let removeTask = function(obj) {
     });
 }
 
+let amount = function() {
+    let table =  document.getElementById('table');
+    document.write(table.childElementCount);
+}
+
 let editTask = function (obj) {
     let idEl = obj.parentNode.parentNode.id;
     let subj = document.getElementById(`item ${idEl}`);

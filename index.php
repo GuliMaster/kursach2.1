@@ -38,12 +38,19 @@
             text-shadow: black 1px 1px 0, black -1px -1px 0,
                          black -1px 1px 0, black 1px -1px 0;
         }
-   .remove_all {
+        .remove_all {
                  position: absolute;
                  width: 6vw;
                  font-size: 1vw;
                  margin-top: 1vh;
                  margin-left: 65vw;
+         }
+	 .amount {
+                position: absolute;
+                width: 7vw;
+                font-size: 1vw;
+                margin-top: 1vh;
+                margin-left: 70vw;
          }
      </style>
      <div class="container">
@@ -53,6 +60,7 @@
                  <div class="panel-heading">
                  <script src = "script.js"></script>
                  <button class = "remove_all" onclick="removeAll()">Сбросить очередь</button>
+	         <button class = "amount" onclick = "amount(this)">Количество людей</button>
                      <h3 align="center">
                          КЛИЕНТЫ
                      </h3>
