@@ -1,7 +1,9 @@
 const http = require('http');
 const assert = require('assert');
-const server = require('./my_server.js');
+const server = require('./res_read_function.js');
+const test = require('./test.json');
 
+const info = 'CLIENT';
 describe('HTTP Server Test', function() {
     before(function() {
         server.listen(8080);
@@ -10,18 +12,20 @@ describe('HTTP Server Test', function() {
         server.close();
     });
     describe('/', function() {
-        it('should get response: Hello!', function(done) {
-            http.get('http://95.217.210.154:8080', function(response) {
+        it('should create new record in json file by request', function(done) {
+            http.get(`http://95.217.210.154:8080?info=${info}`, function(response) {
                 assert.equal(response.statusCode, 200);
                 var body = '';
                 response.on('data', function(d) {
+                    console.log(d);
                     body += d;
                 });
                 response.on('end', function() {
-                    assert.equal(body, 'Hello!');
+                    assert.equal(body, test.idMax++);
                     done();
                 });
             });
         });
     });
 });
+
