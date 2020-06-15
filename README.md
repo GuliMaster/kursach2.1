@@ -6,7 +6,7 @@
 ***
 ***
 ### CI/CD: Buddy. 
-<https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488/badge.svg?token=918d50d7e5fc1e6c04efd0bb49106f27aa96f681af776c988d9e0b1053d8b1b1>
+![Image](https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488/badge.svg?token=918d50d7e5fc1e6c04efd0bb49106f27aa96f681af776c988d9e0b1053d8b1b1)
 
 Ссылка на Pipeline проекта: https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488
 ***
