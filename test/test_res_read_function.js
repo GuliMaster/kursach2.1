@@ -12,7 +12,7 @@ describe('HTTP Server Test', function() {
     });
     describe('/', function() {
         it('should get json file by request.', function(done) {
-            http.get('http://localhost:8080', function(response) {
+            http.get('http://95.217.210.154:8080', function(response) {
                 assert.equal(response.statusCode, 200);
                 var body = '';
                 response.on('data', function(d) {
