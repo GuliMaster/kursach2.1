@@ -5,7 +5,7 @@ const test = require('./test.json');
 
 describe('HTTP Server Test', function() {
     before(function() {
-        server.listen(8080);
+        server.listen();
     });
     after(function() {
         server.close();
