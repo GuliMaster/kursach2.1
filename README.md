@@ -6,7 +6,7 @@
 ***
 ***
 ### CI/CD: Buddy. 
-https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488
+<https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488>
 
 Ссылка на Pipeline проекта: https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488
 ***
