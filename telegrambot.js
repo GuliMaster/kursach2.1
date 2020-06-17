@@ -1,9 +1,21 @@
+/**
+ * @fileOverview
+ * "Telegram Bot"||| Description: Script for telegram bot - processes messages and makes requests to the server.
+ */
 var TelegramBot = require('node-telegram-bot-api');
 var token = '632065176:AAGWUZorgaqTSSLBtwqGdwvwJPkqw4ivOlg';
 var bot = new TelegramBot(token, { polling: true });
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 const server = "http://95.217.210.154:8080";
+/**
+ * "Query_to_server - function" - request to server.
+ * @param bot - telegram bot.
+ * @param server - server's address to which requests are made.
+ * @param xhr - new XMLHttpRequest().
+ * @param msg - message from user.
+ * @param actionType - type of action, defines next server's steps.
+ */
 var query_to_server = function(bot, server, msg, xhr, actionType){
     xhr.open('GET',encodeURI(`${server}?actionType=${actionType}&item=${msg.text}`), false);
     xhr.send();

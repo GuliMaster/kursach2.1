@@ -1,16 +1,30 @@
+/**
+ * @fileOverview
+ * "Server"||| Description: Handler of get requests.
+ * */
 const fs = require('fs');
 const express = require('express');
 const bin2hex = require('locutus/php/strings/bin2hex');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
+/**
+ * @param req - received request.
+ * @param res - response for sending.
+ */
 app.get('/', function(req, res){
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+
     if(req.query.actionType=="r"){
+        /**
+         * "Response on "read" request"
+         */
         res.status(200).send(JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json')));
     }
+    /**
+     * "Response on "create" request"
+     */
     else if(req.query.actionType=="c"){
         let newDat = req.query.item;
         let name = newDat.slice(0, newDat.indexOf(' '));
@@ -37,6 +51,9 @@ app.get('/', function(req, res){
             res.status(200).send(`Вы успешно зарегистрировались и встали в очередь! Ваше место в очереди - ${queueDat.idMax}.`);
         }
     }
+    /**
+     * "Response on "add" request"
+     */
     else if(req.query.actionType=="a"){
         let newDat = req.query.item;
         let login = newDat.slice(0, newDat.indexOf(' '));
@@ -74,6 +91,9 @@ app.get('/', function(req, res){
             res.status(200).send('Клиента с таким логином не существует! Введите данные еще раз!');
         }
     }
+    /**
+     * "Response on "know" request"
+     */
     else if(req.query.actionType=="k"){
         let newDat = req.query.item;
         console.log(newDat);
@@ -95,6 +115,9 @@ app.get('/', function(req, res){
             res.status(200).send('Клиента с таким логином не существует! Введите данные еще раз!');
         }
     }
+    /**
+     * "Response on "update" request"
+     */
     else if(req.query.actionType=="u"){
         let newDat = req.query.item;
         let lastId = req.query.id;
@@ -103,6 +126,9 @@ app.get('/', function(req, res){
         fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
         res.status(200).send(newDat.toString());
     }
+    /**
+     * "Response on "delete" request"
+     */
     else if(req.query.actionType=="d"){
         let lastId = req.query.id;
         let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
@@ -116,6 +142,9 @@ app.get('/', function(req, res){
         fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
         res.status(200).send(lastId.toString());
     }
+    /**
+     * "Response on "delete all" request"
+     */
     else if(req.query.actionType == "da"){
         let queueDat = JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json'));
         for (let key in queueDat.dat) {
@@ -123,7 +152,7 @@ app.get('/', function(req, res){
         }
         queueDat.idMax = 0;
         fs.writeFileSync("/var/www/kursach2.1/queue.json", JSON.stringify(queueDat));
-	res.status(200).send('request confirmed'); 
+	res.status(200).send('request confirmed');
    }
     else{
         res.send('wrong request');

@@ -1,21 +1,30 @@
-const server = "http://95.217.210.154:8080"
-$(document).ready(function(){
+/**
+ * @fileOverview
+ * "Script"||| Description: Generator of get requests to the server.
+ */
+const server = "http://95.217.210.154:8080";
+/** "Read-function"; Description: makes a request to the server, receives data from the server, adds it to the html-page.*/
+let readItems = function() {
     let table = document.getElementById('table');
     let html1 = "";
     $.ajax({
         url: server,
         method: "GET",
-        data: {"actionType":"r"},
+        data: {"actionType": "r"},
         success: function (data) {
-	    for(let key in data.dat){
+            for (let key in data.dat) {
                 html1 += `<tr id="${key}"><td class="col-xs-2">${data.dat[key].id}</td>
                      <td class="col-xs-8" id="item ${key}">${data.dat[key].name}</td><td><button class="btn" onclick="editTask(this)"><i class="fa fa-pencil"></i></button></td><td><button class="btn del-btn" onclick="removeTask(this)"><i class="fa fa-trash"></i></button></td></tr>`;
             }
-	    table.innerHTML =  html1;
-	}
+            table.innerHTML = html1;
+        }
     });
-});
-
+}
+$(document).ready(readItems());
+/**
+ * "RemoveTask-function"; Description: makes a request to the server, receives data from the server, removes it out of the html-page.
+ * @param {HTMLObjectElement} obj - item to be removed.
+ */
 let removeTask = function(obj) {
     let ItemId = obj.parentNode.parentNode.id;
     $.ajax({
@@ -27,28 +36,34 @@ let removeTask = function(obj) {
         }
     });
 }
-
+/**
+ * "RemoveAll-function"; Description: makes a request to the server, removes all items out of the html-page.
+ */
 let removeAll = function() {
     let table = document.getElementById('table');
     $.ajax({
         url: server,
         method: "GET",
         data: {"actionType":"da"},
-        success: function (data) {
+        success: function () {
             table.innerHTML = '';
         }
     });
 }
-
-let amount = function(obj) {
+/**
+ * "Amount-function"; Description: gets a number of elements in the <table>, adds it to the html-page.
+ **/
+let amount = function() {
     let table =  document.getElementById('table');
     let p = document.createElement('p');
     p.className = "amount_text";
     p.innerHTML =  table.firstChild.childElementCount;
     obj.parentNode.append(p);
-    console.log(p);
 }
-
+/**
+ * "EditTask-function"; Description: get new data from user, makes a request to change data to the server, receives data from the server, adds it to the html-page.
+ * @param {HTMLObjectElement} obj - item to be edited.
+ **/
 let editTask = function (obj) {
     let idEl = obj.parentNode.parentNode.id;
     let subj = document.getElementById(`item ${idEl}`);
