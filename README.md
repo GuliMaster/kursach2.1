@@ -2,13 +2,20 @@
 **Курсовая работа "Электронная очередь", курс 2, дисциплина: Информатика и информационные технологии в правоохранительной деятельности**
 -----------------------------------
 ***
-♥ [Ссылка на хостинг с проектом](http://95.217.210.154/) ♥
+[♥ Ссылка на хостинг с проектом ♥](http://95.217.210.154/)
 ***
 ***
 ### CI/CD: Buddy. 
+В качестве системы непрерывной интеграции и разработки используется [Buddy: The DevOps Automation Platform](https://app.buddy.works).
 ![Image](https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488/badge.svg?token=918d50d7e5fc1e6c04efd0bb49106f27aa96f681af776c988d9e0b1053d8b1b1)
 
-Ссылка на Pipeline проекта: https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488
+Ссылка на Pipeline проекта: [→Клик!←](https://app.buddy.works/dakurushin/kursach2-1/pipelines/pipeline/262488)
+***
+***
+### Система автодокументирования.
+Для документации кода используется система [JSDoc](https://jsdoc.app/). В код добавлены блоки комментариев для его разъяснения.
+
+Ссылка для просмотра документации кода: [→Клик!←](http://95.217.210.154/documentation/js/index.html)
 ***
 ***
 **Руководство по установке**
