@@ -20,6 +20,14 @@
 Ссылка для просмотра документации кода: [→Клик!←](http://95.217.210.154/documentation/js/index.html)
 ***
 ***
+### API
+Для документации API используется [SwaggerHub: Build, Collaborate & Integrate APIs](https://app.swaggerhub.com). 
+
+Автоматическая генерация документации реализована с помощью системы [Swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc).
+
+SwaggerHub синхронизирован с GitHub-репозиторием. При обновлении документации в SwaggerHub обновляются и соответствующие файлы в репозитории.
+***
+***
 **Руководство по установке**
 -----------------------------------
 ***
