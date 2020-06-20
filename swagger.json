@@ -1,0 +1,149 @@
+{
+  "info": {
+    "title": "ELECTRONIC QUEUE",
+    "version": "1.2.2",
+    "description": "API for server part of project",
+    "contact": {
+      "name": "GuliMaster",
+      "email": "dakurushin@gmail.com"
+    }
+  },
+  "basePath": "/",
+  "host": "95.217.210.154",
+  "responses": {
+    "200": {
+      "description": "Everything is OK!"
+    },
+    "400": {
+      "description": "Bad Request"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Processing data depending on the request",
+        "description": "Sending, creating, deleting, updating, dropping data.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "actionType",
+            "description": "defines type of working with data",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "newDat",
+            "description": "contains some new data from request.",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "fileDat",
+            "description": "contains info about clients",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "queueDat",
+            "description": "contains some data about clients in the queue",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "json-file": {
+      "description": "files contain queue or clients' info",
+      "type": "object",
+      "required": [
+        "idMax",
+        "dat"
+      ],
+      "properties": {
+        "idMax": {
+          "type": "integer",
+          "example": 1
+        },
+        "dat": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "login",
+            "password"
+          ],
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "I.I.Ivanov"
+            },
+            "login": {
+              "type": "string",
+              "example": "iivanov2020"
+            },
+            "password": {
+              "type": "string",
+              "example": "1q2a3z"
+            }
+          }
+        }
+      }
+    },
+    "client": {
+      "type": "object",
+      "required": [
+        "name",
+        "login",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "I.I.Ivanov"
+        },
+        "login": {
+          "type": "string",
+          "example": "iivanov2020"
+        },
+        "password": {
+          "type": "string",
+          "example": "1q2a3z"
+        }
+      }
+    }
+  },
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": [
+    {
+      "name": "users",
+      "description": "users are in role of clients or admins"
+    }
+  ]
+}
