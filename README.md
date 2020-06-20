@@ -26,6 +26,10 @@
 Автоматическая генерация документации реализована с помощью системы [Swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc).
 
 SwaggerHub синхронизирован с GitHub-репозиторием. При обновлении документации в SwaggerHub обновляются и соответствующие файлы в репозитории.
+
+Ссылка для просмотра документации на SwaggerHub: [→Клик!←](https://app.swaggerhub.com/apis/GuliMaster/electronic-queue/1.2.2)
+
+Ссылка для просмотра экспортированной документации API: [→Клик!←](http://95.217.210.154/API%20SwaggerHub/index.html)
 ***
 ***
 **Руководство по установке**
