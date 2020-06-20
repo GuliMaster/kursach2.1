@@ -12,14 +12,103 @@ app.use(express.urlencoded({extended: false}));
  * @param req - received request.
  * @param res - response for sending.
  */
+/**
+ * @swagger
+ *
+ * tags:
+ * -    name: users
+ *      description: users are in role of clients or admins
+ *
+ * /:
+ *   get:
+ *     tags:
+ *     - users
+ *     summary: Processing data depending on the request
+ *     description: Sending, creating, deleting, updating, dropping data.
+ *     consumes:
+ *          -    application/json
+ *     produces:
+ *          -    application/json
+ *     parameters:
+ *          -   in: query
+ *              name: actionType
+ *              description: defines type of working with data
+ *              required: true
+ *              type: string
+ *          -   in: query
+ *              name: newDat
+ *              description: contains some new data from request.
+ *              type: string
+ *          -   in: path
+ *              required: true
+ *              name: fileDat
+ *              description: contains info about clients
+ *              type: string
+ *          -   in: path
+ *              required: true
+ *              name: queueDat
+ *              description: contains some data about clients in the queue
+ *              type: string
+ *     responses:
+ *          200:
+ *                  $ref: '#/responses/200'
+ *          400:
+ *                  $ref: '#/responses/400'
+ * definition:
+ *      json-file:
+ *          description: files contain queue or clients' info
+ *          type: object
+ *          required:
+ *          -   idMax
+ *          -   dat
+ *          properties:
+ *              idMax:
+ *                  type: integer
+ *                  example: 1
+ *              dat:
+ *                  type: object
+ *                  required:
+ *                  -   id
+ *                  -   name
+ *                  -   login
+ *                  -   password
+ *                  properties:
+ *                      id:
+ *                          type: integer
+ *                          example: 1
+ *                      name:
+ *                          type: string
+ *                          example: I.I.Ivanov
+ *                      login:
+ *                          type: string
+ *                          example: iivanov2020
+ *                      password:
+ *                          type: string
+ *                          example: 1q2a3z
+ *      client:
+ *          type: object
+ *          required:
+ *          -   name
+ *          -   login
+ *          -   password
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  example: I.I.Ivanov
+ *              login:
+ *                  type: string
+ *                  example: iivanov2020
+ *              password:
+ *                  type: string
+ *                  example: 1q2a3z
+ */
 app.get('/', function(req, res){
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-
+    /**
+     * "Response on "read" request"
+     */
     if(req.query.actionType=="r"){
-        /**
-         * "Response on "read" request"
-         */
         res.status(200).send(JSON.parse(fs.readFileSync('/var/www/kursach2.1/queue.json')));
     }
     /**
